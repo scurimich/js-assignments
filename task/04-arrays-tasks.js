@@ -253,7 +253,7 @@ function getMovingSum(arr) {
  * [ "a" ] => []
  */
 function getSecondItems(arr) {
-  return arr.filter((val, ndx) => ndx % 2 !== 0 ? true : false);
+  return arr.filter((val, ndx) => ndx % 2 !== 0);
 }
 
 
@@ -422,7 +422,7 @@ function toStringList(arr) {
  */
 function sortCitiesArray(arr) {
   return arr.sort((a, b) => a.country > b.country)
-    .sort((a, b) => a.country === b.country && a.city > b.city ? true : false);
+    .sort((a, b) => a.country === b.country && a.city > b.city);
 }
 
 /**

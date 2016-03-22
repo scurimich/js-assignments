@@ -224,21 +224,9 @@ function getRectangleString(width, height) {
  *
  */
 function encodeToRot13(str) {
-    var i = 0,
-        ch,
-        newStr= '';
-    while (i < str.length) {
-        ch = str.charCodeAt(i);
-        if ((ch >= 65 && ch <= 77) || (ch >= 97 && ch <= 109)) {
-            newStr += String.fromCharCode(ch+13);
-        } else if ((ch >= 78 && ch <= 90) || (ch >= 110 && ch <= 122)) {
-            newStr += String.fromCharCode(ch-13);
-        } else {
-            newStr += str[i];
-        }
-        i+=1;
-    }
-    return newStr;
+    return str.replace(/[a-z]/gi, function (s) {
+        return String.fromCharCode(s.charCodeAt(0) + (s.toLowerCase() < 'n' ? 13 : -13));
+    });
 }
 
 /**

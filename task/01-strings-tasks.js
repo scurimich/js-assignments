@@ -272,9 +272,7 @@ function isString(value) {
  *   'K♠' => 51
  */
 function getCardId(value) {
-    var ranks = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'],
-        colors = ['♣', '♦', '♥', '♠'];
-    return ranks.indexOf(value.slice(0, -1)) + (colors.indexOf(value.slice(-1))*13);
+    return 'A234567891JQK'.indexOf(value[0]) + '♣♦♥♠'.indexOf(value.slice(-1))*13;
 }
 
 

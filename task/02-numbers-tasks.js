@@ -232,7 +232,7 @@ function isPrime(n) {
  *   toNumber(new Number(42), 0) => 42
  */
 function toNumber(value, def) {
-    var num = +(''+value);
+    var num = +value;
     return (!isNaN(num) && typeof num === 'number') ? num : def;
 }
 

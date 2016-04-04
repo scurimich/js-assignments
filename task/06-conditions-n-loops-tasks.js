@@ -135,7 +135,7 @@ function isTriangle(a,b,c) {
  */
 function doRectanglesOverlap(rect1, rect2) {
 	if (rect2.top < rect1.top) {
-		var temp;
+		let temp;
 		temp = rect1;
 		rect1 = rect2;
 		rect2 = temp;
@@ -294,8 +294,8 @@ function reverseInteger(num) {
  *   4916123456789012 => false
  */
 function isCreditCardNumber(ccn) {
-  var digit = ('' + ccn).split('').reverse().slice(1),
-  	sum,
+  const digit = ('' + ccn).split('').reverse().slice(1);
+  let sum,
   	i;
   for (i = 0; i < digit.length; i += 2) {
   	digit[i] *= 2;
@@ -353,7 +353,19 @@ function getDigitalRoot(num) {
  *   '{[(<{[]}>)]}' = true 
  */
 function isBracketsBalanced(str) {
-	throw new Error('Not implemented');
+  const brackets = ['[]', '()', '{}', '<>'];
+  let tempStr = str;
+  while (tempStr) {
+    let flag = 0;
+    for (let val of brackets) {
+      if (tempStr.indexOf(val) > -1) {
+        tempStr = tempStr.slice(0, tempStr.indexOf(val)) + tempStr.slice(tempStr.indexOf(val) + 2);
+        flag++;
+      }
+    }
+    if (flag == 0) return false;
+  }
+  return true;
 }
 
 
@@ -389,7 +401,36 @@ function isBracketsBalanced(str) {
  *
  */
 function timespanToHumanString(startDate, endDate) {
-    throw new Error('Not implemented');
+  const result = endDate - startDate,
+    sec = 1000,
+    min = 60,
+    hour = 60,
+    day = 24,
+    month = 30,
+    year = 365;
+  switch (true) {
+    case result <= 45*sec:
+      return 'a few seconds ago';
+    case result <= 90*sec:
+      return 'a minute ago';
+    case result <= 45*min*sec:
+      return '' + Math.round((result - 1) / min / sec) + ' minutes ago';
+    case result <= 90*min*sec:
+      return 'an hour ago';
+    case result <= 22*hour*min*sec:
+      return '' + Math.round((result - 1) / hour / min / sec) + ' hours ago';
+    case result <= 36*hour*min*sec:
+      return 'a day ago';
+    case result <= 25*day*hour*min*sec:
+      return '' + Math.round((result - 1) / day / hour / min / sec) + ' days ago';
+    case result <= 45*day*hour*min*sec:
+      return 'a month ago';
+    case result <= 345*day*hour*min*sec:
+      return '' + Math.round((result - 1) / month / day / hour / min / sec) + ' months ago';
+    case result <= 545*day*hour*min*sec:
+      return 'a year ago';
+    default: return '' + Math.round((result -1) / year / day / min / min / sec) + ' years ago';
+  }
 }
 
 
@@ -413,7 +454,7 @@ function timespanToHumanString(startDate, endDate) {
  *    365, 10 => '365'
  */
 function toNaryString(num, n) {
-    throw new Error('Not implemented');
+  return num.toString(n);
 }
 
 

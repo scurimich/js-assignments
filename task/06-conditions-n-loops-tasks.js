@@ -471,7 +471,23 @@ function toNaryString(num, n) {
  *   ['/web/favicon.ico', '/web-scripts/dump', '/webalizer/logs'] => '/'
  */
 function getCommonDirectoryPath(pathes) {
-    throw new Error('Not implemented');
+  let result = '',
+    firstPath = pathes[0],
+    count = 0;
+  mainLoop:
+    while (true) {
+      let slash = firstPath.indexOf('/', count),
+        piece = firstPath.slice(count, slash);
+      for (let j = 1; j < pathes.length; j++) {
+        let curPath = pathes[j],
+          curSlash = curPath.indexOf('/', count),
+          curPiece = curPath.slice(count, curSlash);
+        if (curPiece !== piece) break mainLoop;
+      }
+      result += piece+'/';
+      count = slash + 1;
+    }
+  return result;
 }
 
 
@@ -494,7 +510,20 @@ function getCommonDirectoryPath(pathes) {
  *
  */
 function getMatrixProduct(m1, m2) {
-    throw new Error('Not implemented');
+  let result = [];
+  for (let i = 0; i < m1.length; i++) {
+    let curSubArray = m1[i],
+      resultStr = [];
+    for (let j = 0; j < m2[0].length; j++) {
+      let subres = 0;
+      for (let k = 0; k < m1[0].length; k++) {
+        subres += m1[i][k] * m2[k][j];
+      }
+      resultStr.push(subres);
+    }
+    result.push(resultStr);
+  }
+  return result;
 }
 
 
@@ -529,7 +558,31 @@ function getMatrixProduct(m1, m2) {
  *
  */
 function evaluateTicTacToePosition(position) {
-    throw new Error('Not implemented');
+  let win = [
+    [[0, 0], [0, 1], [0, 2]],
+    [[1, 0], [1, 1], [1, 2]],
+    [[2, 0], [2, 1], [2, 2]],
+    [[0, 0], [1, 0], [2, 0]],
+    [[0, 1], [1, 1], [2, 1]],
+    [[0, 2], [1, 2], [2, 2]],
+    [[0, 0], [1, 1], [2, 2]],
+    [[0, 2], [1, 1], [2, 0]],
+  ];
+  for (let i = 0; i < win.length; i++) {
+    let counter = 0;
+    let symbol;
+    for (let j = 0; j < win[i].length - 1; j++) {
+      let cur = position[win[i][j][0]][win[i][j][1]],
+          prev = position[win[i][j + 1][0]][win[i][j + 1][1]];
+      if (cur == prev && cur != undefined) {
+        symbol = cur;
+        counter++
+      } else {
+        break;
+      }
+    }
+    if (counter == 2) return symbol;
+  }
 }
 
 

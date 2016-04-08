@@ -510,7 +510,7 @@ function getCommonDirectoryPath(pathes) {
  *
  */
 function getMatrixProduct(m1, m2) {
-  let result = [];
+  const result = [];
   for (let i = 0; i < m1.length; i++) {
     let curSubArray = m1[i],
       resultStr = [];
@@ -558,7 +558,7 @@ function getMatrixProduct(m1, m2) {
  *
  */
 function evaluateTicTacToePosition(position) {
-  let win = [
+  const win = [
     [[0, 0], [0, 1], [0, 2]],
     [[1, 0], [1, 1], [1, 2]],
     [[2, 0], [2, 1], [2, 2]],
